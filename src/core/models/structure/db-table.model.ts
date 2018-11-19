@@ -28,13 +28,13 @@ export class DbTable {
      * @property {string} name cannot be an option information and is the table
      * name in database
      */
-    public name: string
+    public name: string;
 
     /**
      * @public
      * @property {number} version, the table model version, information to help migration
      */
-    public version? = 0;
+    public version ? = 0;
 
     /**
      * @public
@@ -77,7 +77,7 @@ export class DbTable {
      * @since 0.2
      */
     public configure(config: TableConfig) {
-        if (config.version) {this.version = config.version}
+        if (config.version) {this.version = config.version; }
     }
 
     /**
@@ -147,7 +147,7 @@ export class DbTable {
             throw new BadColumnDeclarationError('relation with key "' + (key || DbTable.RELATIONS_DEFAULT_KEY) + '" is inserted twice');
         } else {
             if (!this.relations[model.name]) {
-                this.relations[model.name] = <{[index: string]: DbRelationModel}>{}
+                this.relations[model.name] = <{[index: string]: DbRelationModel}>{};
             }
             this.relations[model.name][key || DbTable.RELATIONS_DEFAULT_KEY] = relation;
         }

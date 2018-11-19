@@ -36,13 +36,13 @@ export class ModelManager {
      * @private
      * @property {{[index: string]: DbTable}} tables hashmap of table names to their datamodel
      */
-    private tables: {[index: string]: DbTable} = {};
+    private tables: { [index: string]: DbTable } = {};
 
     /**
      * @private
      * @property {{[index: string]: string}} models hashmap of model names with theirs linked table name
      */
-    private models: {[index: string]: string} = {};
+    private models: { [index: string]: string } = {};
 
     /**
      * @static
@@ -78,20 +78,20 @@ export class ModelManager {
      *
      * @return {string} the column name for field "fieldName" of the model "model"
      */
-    public getColumnNameForField(model: {new(): DbHelperModel}, fieldName: string): string {
+    public getColumnNameForField(model: { new(): DbHelperModel }, fieldName: string): string {
         if (!this.models.hasOwnProperty(model.name)) {
             const error = new BadColumnDeclarationError('Did you forget to declare model: ' +
                 model.name + '\n Check @Table déclaration on this model');
-            throw(error);
+            throw (error);
         }
         const tableName = this.models[model.name];
         const table = this.tables[tableName];
 
         if (!table.fields.hasOwnProperty(fieldName)) {
             const error = new BadTableDeclarationError('Did you forget to declare column for field "' +
-            fieldName + '" of model "' + model.name + ' - tableName : ' +  tableName + ' table : ' + table + '' +
-            '"\n Check @Column déclaration on this model');
-            throw(error);
+                fieldName + '" of model "' + model.name + ' - tableName : ' + tableName + ' table : ' + table + '' +
+                '"\n Check @Column déclaration on this model');
+            throw (error);
         }
         return table.fields[fieldName].name;
     }
@@ -126,13 +126,13 @@ export class ModelManager {
      *
      * @return {DbTable} the table declared for the model
      */
-    public getModel(model: string | DbHelperModel | {new(): DbHelperModel }): DbTable {
+    public getModel(model: string | { new(): DbHelperModel } | DbHelperModel): DbTable {
         if (model instanceof String) {
-            return this.tables[model];
+            return this.tables[model as string];
         } else if (model instanceof DbHelperModel) {
-            return this.tables[this.getTable(model.constructor as {new(): DbHelperModel})];
+            return this.tables[this.models[model.TABLE_NAME]];
         } else {
-            return this.tables[this.getTable(model)];
+            return this.tables[this.getTable(model as { new(): DbHelperModel })];
         }
     }
 
@@ -144,7 +144,7 @@ export class ModelManager {
      *
      * @return {string} table name
      */
-    public getTable(model: {new(): DbHelperModel}): string {
-        return this.models[model.name];
+    public getTable(model: { new(): DbHelperModel }): string {
+        return this.models[model.prototype.TABLE_NAME];
     }
 }

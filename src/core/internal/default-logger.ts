@@ -21,7 +21,7 @@ export class DefaultLogger implements IDbLogger {
 
     public trace(...args: any[]): void {
         if (this.isLogLevelActivated('trace')) {
-            console.trace(...args);
+            console.log(...args);
         }
     }
 

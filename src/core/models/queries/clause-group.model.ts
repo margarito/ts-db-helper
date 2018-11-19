@@ -65,7 +65,7 @@ export class ClauseGroup {
     /**
      * @public
      * @method isEmpty check if clause group is empty
-     * 
+     *
      * @return {boolean} true if is empty
      */
     public isEmpty(): boolean {

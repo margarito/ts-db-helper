@@ -41,7 +41,7 @@ export function Table<T extends DbHelperModel>(config?: TableConfig) {
             target.prototype.$$dbTable = new DbTable();
         }
         target.prototype.$$dbTable.name = target.prototype.TABLE_NAME;
-        target.prototype.$$dbTable.modelName = target.name;
+        target.prototype.$$dbTable.modelName = target.prototype.TABLE_NAME;
         target.prototype.$$dbTable.configure(config);
         ModelManager.getInstance().addModel(target.prototype.$$dbTable);
     };

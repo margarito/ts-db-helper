@@ -99,7 +99,7 @@ export class Clause implements IClause {
      */
     public set key(value: string) {
         const parts = value.split(/__| /);
-        const clauseError = new QueryError('key clause is invalid', '', '')
+        const clauseError = new QueryError('key clause is invalid', '', '');
         if (!parts.length || parts.length > 4) {
             throw clauseError;
         }

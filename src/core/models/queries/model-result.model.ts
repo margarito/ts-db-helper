@@ -99,7 +99,7 @@ export class ModelResult<T extends DbHelperModel> implements QueryResult<T> {
                 return this.cache;
             }
         };
-    };
+    }
 
     /**
      * @public

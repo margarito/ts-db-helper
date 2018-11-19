@@ -17,7 +17,7 @@ export class DbColumn {
      * @property {string} name, the optional column name, if not set, the column take
      *           the field name as column name
      */
-    public name: string
+    public name: string;
 
     /**
      * @public
@@ -107,12 +107,12 @@ export class DbColumn {
      * @since 0.2
      */
     public configure(config: ColumnConfig) {
-        if (config.name) {this.name = config.name}
-        if (config.type) {this.type = config.type}
-        if (config.primaryKey !== undefined) {this.primaryKey = config.primaryKey}
-        if (config.unique !== undefined) {this.unique = config.unique}
-        if (config.indexed !== undefined) {this.indexed = config.indexed}
-        if (config.autoIncrement !== undefined) {this.autoIncrement = config.autoIncrement}
+        if (config.name) { this.name = config.name; }
+        if (config.type) { this.type = config.type; }
+        if (config.primaryKey !== undefined) {this.primaryKey = config.primaryKey; }
+        if (config.unique !== undefined) {this.unique = config.unique; }
+        if (config.indexed !== undefined) {this.indexed = config.indexed; }
+        if (config.autoIncrement !== undefined) {this.autoIncrement = config.autoIncrement; }
     }
 
     /**
@@ -127,7 +127,7 @@ export class DbColumn {
      */
     public fromAlias(alias: string): DbColumn {
         const aliasColumn = new DbColumn(alias + '.' + this.name);
-        aliasColumn.field = alias + '.' + this.field
+        aliasColumn.field = alias + '.' + this.field;
         aliasColumn.type = this.type;
         aliasColumn.primaryKey = this.primaryKey;
         aliasColumn.unique = this.unique;

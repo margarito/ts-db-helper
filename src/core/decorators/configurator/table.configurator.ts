@@ -17,5 +17,5 @@ export class TableConfig {
     /**
      * @property {number} version, the table model version, information to help migration
      */
-    public version? = 0;
+    public version ? = 0;
 }

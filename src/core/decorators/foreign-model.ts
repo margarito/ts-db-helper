@@ -79,7 +79,7 @@ export function ForeignModel<T extends DbHelperModel>(model: {new(): DbHelperMod
 
         let reverseTable: DbTable = model.prototype.$$dbTable;
         if (!reverseTable) {
-            reverseTable =  new DbTable()
+            reverseTable =  new DbTable();
             model.prototype.$$dbTable = reverseTable;
         }
 

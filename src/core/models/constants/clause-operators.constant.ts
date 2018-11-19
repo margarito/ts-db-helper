@@ -49,4 +49,4 @@ export class ClauseOperators {
     public static valueOf(val: String): string {
        return  (ClauseOperators as {[index: string]: any})[val.toUpperCase()];
     }
-};
+}
